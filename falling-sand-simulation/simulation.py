@@ -64,6 +64,15 @@ class Simulation:
 		elif event.key == pygame.K_e:
 			print("Eraser Mode")
 			self.mode = "erase"
+		elif event.key == pygame.K_1:
+			print("Brush size +")
+			self.brush_size = self.brush_size + 1
+		elif event.key == pygame.K_2:
+			print("Brush size -")
+			self.brush_size = self.brush_size - 1
+		elif event.key == pygame.K_0:
+			print("Brush Reset")
+			self.brush_size = 6
 
 	def handle_mouse(self):
 		buttons = pygame.mouse.get_pressed()
