@@ -34,7 +34,7 @@ class Simulation:
     def restart(self):
         self.grid.clear()
 
-    def handle_controlls(self):
+    def handle_controls(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
