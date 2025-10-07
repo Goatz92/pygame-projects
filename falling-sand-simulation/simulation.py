@@ -1,6 +1,7 @@
 import pygame, sys, random
 from grid import Grid
-from particle import SandParticle, RockParticle
+from particle import SandParticle 
+from particle import RockParticle
 
 class Simulation:
     def __init__(self, width, height, cell_size):
@@ -10,10 +11,17 @@ class Simulation:
         self.brush_size = 3
 
     def draw(self, window):
-        self.grid_draw(window)
+        self.grid.draw(window)
         self.draw_brush(window)
 
     def add_particle(self, row, column):
+        if self.mode == "sand":
+            if random.random() < 0.15:
+                self.grid.add_particle(row, column, SandParticle)
+            elif self.mode == "rock":
+                self.grid.add_particle(row, column, RockParticle)
+
+    def remove_particle(self, row, column):
         self.grid.remove_particle(row, column)
 
     def update(self):
@@ -25,7 +33,7 @@ class Simulation:
 
             for column in column_range:
                 particle = self.grid.get_cell(row, column)
-                if isinstance(partcile, SandParticle):
+                if isinstance(particle, SandParticle):
                     new_pos = particle.update(self.grid, row, column)
                     if new_pos != (row, column):
                         self.grid.set_cell(new_pos[0], new_pos[1], particle)
@@ -86,7 +94,7 @@ class Simulation:
         color = (255, 255, 255)
 
         if self.mode == "rock":
-            color (100, 100, 100)
+            color = (100, 100, 100)
         elif self.mode == "sand":
             color = (185, 142, 66)
         elif self.mode == "erase":
