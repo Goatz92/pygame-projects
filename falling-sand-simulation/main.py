@@ -1,5 +1,5 @@
 import pygame
-import simulation import Simulation
+from simulation import Simulation
 
 pygame.init()
 pygame.mouse.set_visible(False)
